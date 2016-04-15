@@ -13,3 +13,15 @@
     body: Faker::Hipster.paragraph
   )
 end
+Post.all.each do |post|
+	20.times do
+		Comment.create(
+	    body: Faker::Hipster.paragraph,
+	    relation_id: post.id,
+	    relation_type: 'Post'
+	  )
+	end  
+end
+
+
+

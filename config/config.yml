@@ -1,0 +1,5 @@
+"api.error" :
+  01 : "Authentication Failed"
+  02 : "No such route."
+  03 : "Authentication Failed. Invalid Email / Password."
+  04 : "Only content type application/json is accepted."

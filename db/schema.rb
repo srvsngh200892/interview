@@ -11,16 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404162941) do
+ActiveRecord::Schema.define(version: 20160415061818) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "app_clients", force: :cascade do |t|
+    t.string   "client_name",    limit: 255
+    t.string   "app_key",        limit: 255
+    t.string   "app_secret",     limit: 255
+    t.integer  "status",         limit: 4
+    t.string   "permissions",    limit: 255
+    t.string   "client_details", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "relation_id",   limit: 4
+    t.string   "relation_type", limit: 255
+    t.text     "body",          limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "comments", ["relation_id"], name: "index_comments_on_relation_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title",      limit: 255
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
 end
