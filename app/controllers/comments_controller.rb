@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
   	ensure_params(:post_id, :body) and return
   	return render json: {:error=>"Post Not Found"} ,status: 400  if @post.blank?
   	@comment = Comment.new(relation_id:@post.id,relation_type: 'Post', body: params[:body])
-  	if @comments.save
+  	if @comment.save
       return render json: {:success=>"Created Successfully"} ,status: :ok
     else
     	render_api_error(15, 422, 'error', @comment.errors.full_messages.to_s)
